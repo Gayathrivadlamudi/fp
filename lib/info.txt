@@ -1,0 +1,21 @@
+when we click on input field then keyboard opens up which reduces the phone screen size
+resizeToAvoidBottomInset:false
+✅ Keyboard opens
+✅ UI stays same
+✅ Gradient does NOT move
+
+in login page
+when input field is pressed the password is not visible as i kept resizeToAvoidBottomInset
+as the bottom conatiner is scroble we need to have extra spae which makes it scrollable
+so we use padding
+ padding: EdgeInsets.only(
+                      bottom: MediaQuery.of(context).viewInsets.bottom,
+                    ),
+ we add extra space at bottom so it will scroll
+ MediaQuery tells the height,width,If keyboard is open
+ so viewInset means screen area coverd by system UI
+ ViewInset.bottom - > How much of the bottom of the screen is covered by system UI
+
+
+ for any pressable button we can use elevatedbutton and we can give use style by keeping it
+ in sizedBox and we can style it by style:ElevatedButton.styleForm(
