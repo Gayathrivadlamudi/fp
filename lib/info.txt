@@ -19,3 +19,29 @@ so we use padding
 
  for any pressable button we can use elevatedbutton and we can give use style by keeping it
  in sizedBox and we can style it by style:ElevatedButton.styleForm(
+
+
+layoutBuilder means we can get the costraints like height,width based on the parent widge
+and it must return a widget
+
+builder:function that creates  a widget
+like LayoutBuilder(
+       builder: (BuildContext context, BoxConstraints constraints) {
+         // You can use constraints here to calculate sizes
+         return Container(
+           width: constraints.maxWidth / 2,
+           height: 50,
+           color: Colors.blue,
+         );
+       },
+     )
+List.generate(itemcount,(index)=>{
+"Item ${index}"
+}
+
+List.generate(itemcount,(_)=>{
+"hi"
+}
+we keep _ when we dont need or dont care about _
+
+key helps flutter identfies the widget

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../utils/Validator.dart';
+import '../widgets/Seprator_dash.dart';
 class login_view extends StatefulWidget{
 
   login_view({super.key});
@@ -156,8 +157,45 @@ class _login_viewState extends State<login_view>{
 
                        ),
                         )),
-                        Padding(padding: EdgeInsets.only(top: 20),child: Text("or"),)
+                        Padding(padding: EdgeInsets.only(top: 20),
+                          child: Row(
+                             children: [
+                               Expanded(child:  MySperator(color: Colors.black,), ),
+                               Text("   Or   ",style: TextStyle(color: Colors.black,fontSize:18),),
+                               Expanded(child:  MySperator(color: Colors.black,), ),
+                             ],
+                          ),),
+                        SizedBox(height: 10,),
+                       Center(child:Text("Sign In With",
+                         style: TextStyle(color:Colors.black,fontSize: 14),
+                       ),),
 
+                        SizedBox(height: 10,),
+                        Row(
+                          //okay its like we divide the row into 3 parts and each part will have expanded so it get like that
+                          children: [
+                            //by using container we can use alignment
+                            Expanded(child: Container(
+                              alignment: Alignment.centerRight,
+                              child: IconButton(onPressed: (){}, icon:
+                                  Image.asset('assets/google.png',
+                                    width: 50,height: 50,)
+                              ),
+                            )),
+                            Expanded(child: Container(
+                              alignment: Alignment.center,
+                              child: IconButton(onPressed: (){}, icon:
+                              Image.asset('assets/apple.png', width: 50,height: 50,)
+                              ),
+                            )),
+                            Expanded(child: Container(
+                              alignment: Alignment.centerLeft,
+                              child: IconButton(onPressed: (){}, icon:
+                              Image.asset('assets/microsoft.png', width: 50,height: 50,)
+                              ),
+                            ))
+                          ],
+                        )
                       ],
                     ) ,
                   ),
