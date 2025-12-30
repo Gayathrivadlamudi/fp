@@ -1,8 +1,9 @@
 const express=require("express");
 const app=express();
-const port=3000;
+const port=process.env.PORT || 3000;
 const apikey="hjysgt87e-andcommparent-84376-mcb-dt34986tj";
 const { v4: uuidv4 } = require("uuid");
+app.use(express.json());
 
 
     function api_check(req,res,next){
@@ -25,9 +26,10 @@ const { v4: uuidv4 } = require("uuid");
     app.post("/login",api_check,async(req,res)=>{
     try{
         const{
-            username
-            ,pass,
-            device_id
+            userName
+            ,password,
+            device_id,
+            api_key
         }=req.body;
 
     if(username=="GayathriChowdaryVadlamudi" && pass=="514233241"){
@@ -35,9 +37,10 @@ const { v4: uuidv4 } = require("uuid");
     status:1,
     response:{
     userData:{
-            username:username,
-            password:pass,
-            userID:uuidv4(),
+            username:userName,
+            Password:password,
+            userID:device_id ,
+
             },
             AccessToken:"12345", //used to acess api's,Sent with every request,  Checked by backend
             IdentityToken:"i_12345",
@@ -64,5 +67,5 @@ const { v4: uuidv4 } = require("uuid");
     }
 
     });
-    app.listen(port,()=>{
+    app.listen(port,0.0.0.0,()=>{
     console.log(`Server is running at ${port}`)})
