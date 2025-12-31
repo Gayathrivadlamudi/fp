@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../utils/Validator.dart';
 import '../widgets/Seprator_dash.dart';
+import '../controllers/authentication.dart';
 class login_view extends StatefulWidget{
 
   login_view({super.key});
@@ -15,6 +16,8 @@ class _login_viewState extends State<login_view>{
   TextEditingController userctrl=TextEditingController();
   TextEditingController passctrl=TextEditingController();
   bool passwordHidden=true;
+  final Authentication authController = Get.put(Authentication());
+
   @override
   Widget build(BuildContext context){
     return Scaffold(
@@ -31,9 +34,9 @@ class _login_viewState extends State<login_view>{
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: [
-                Color(0xFF0052D4), // dark blue
-                Color(0xFF65C7F7), // sky blue
-                Color(0xFFBDEBFF), // very light blue
+                Color(0xFFFFFFFF), // dark blue
+                Color(0xFFFFFFFF), // sky blue
+                Color(0xFFFFFFFF), // very light blue
               ],
               stops: [0.0, 0.55, 1.0],)
         ),
@@ -44,13 +47,13 @@ class _login_viewState extends State<login_view>{
                   height: Get.height/2.3,
                   child: Column(
                     children: [
-                      SizedBox(height: 41,),
+                      SizedBox(height: 68,),
                           Image.asset(
-                            'assets/logo.png',
-                            width: 200,
+                            'assets/logo1.png',
+                            width: 150,
                             fit: BoxFit.contain, // keeps full image
                           ),
-                      // SizedBox(height: 5,),
+                      SizedBox(height: 23,),
                       Center(
                         child: Text('FaceRecoX',
                           style:  GoogleFonts.playfairDisplay(fontStyle: FontStyle.italic,color: Colors.black,
@@ -79,14 +82,21 @@ class _login_viewState extends State<login_view>{
                             decoration: InputDecoration(
                                 filled:true,
                                 hintText: "Username / Email",
-                                fillColor: Colors.lightBlueAccent.withAlpha(80),
+                                // fillColor: Colors.lightBlueAccent.withAlpha(80),
+                                fillColor: Color(0XFFFFFFFF),
                                 prefixIcon:Image.asset('assets/profile.png',
                                   color: Colors.black,
                                   width: 20,height: 20,),
-                                border: OutlineInputBorder(
+                                enabledBorder:OutlineInputBorder(
                                     borderRadius:BorderRadius.circular(10),
                                     borderSide: BorderSide(
                                         color: Colors.black54
+                                    )
+                                ),
+                                focusedBorder:OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide: BorderSide(
+                                        color: Colors.black
                                     )
                                 )
                             ),
@@ -101,7 +111,7 @@ class _login_viewState extends State<login_view>{
                                 filled:true,
                                 hintText: "Password",
 
-                                fillColor: Colors.lightBlueAccent.withAlpha(80),
+                                fillColor: Color(0XFFFFFFFF),
                                 prefixIcon:Image.asset('assets/key.png',
                                   color: Colors.black,
                                   width: 20,height: 20,),
@@ -115,12 +125,20 @@ class _login_viewState extends State<login_view>{
                                         passwordHidden=!passwordHidden;
                                       });
                                     } ),
-                                border: OutlineInputBorder(
+
+                                enabledBorder:OutlineInputBorder(
                                     borderRadius:BorderRadius.circular(10),
                                     borderSide: BorderSide(
                                         color: Colors.black54
                                     )
+                                ),
+                              focusedBorder:OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide: BorderSide(
+                                  color: Colors.black
                                 )
+                              )
+
                             ),
 
                           ) ,
@@ -134,15 +152,16 @@ class _login_viewState extends State<login_view>{
                                 shape:RoundedRectangleBorder(
                                     borderRadius:BorderRadius.circular(23),
                                 ),
-                                backgroundColor: Color(0XFF1372B2)
+                                backgroundColor: Color(0XFFE32228)
 
                               ),
                               onPressed:(){
                             print("login pressed");
+                            authController.onLogin(userctrl.text,passctrl.text,context);
                           }, child:
                               Row(children: [
                                 Expanded(child:
-                                  Center(child: Text("LogIn",style:GoogleFonts.playfairDisplay(
+                                  Center(child: Text("Log In",style:GoogleFonts.playfairDisplay(
                                     fontStyle: FontStyle.normal,
                                     fontSize: 19,
                                     color: Colors.white,
@@ -200,10 +219,6 @@ class _login_viewState extends State<login_view>{
                     ) ,
                   ),
                 ), )
-
-
-
-
               ],
         ) ,
       )

@@ -2,12 +2,15 @@ const express=require("express");
 const app=express();
 const port=process.env.PORT || 3000;
 const apikey="hjysgt87e-andcommparent-84376-mcb-dt34986tj";
+const schoolName="NLP SCHOOL";
+const Class="4th";
+const rollNo="2345B45";
 const { v4: uuidv4 } = require("uuid");
 app.use(express.json());
 
 
     function api_check(req,res,next){
-    const api_key=req.headers['x-api-key'] || req.body.apikey;
+    const api_key=req.headers['x-api-key'] || req.body.api_key;
     if (api_key!=apikey){
     return res.status(401).json(
     {
@@ -29,10 +32,13 @@ app.use(express.json());
             userName
             ,password,
             device_id,
-            api_key
+            api_key,
+            schoolName,
+            Class,
+            rollNo
         }=req.body;
 
-    if(username=="GayathriChowdaryVadlamudi" && pass=="514233241"){
+    if(userName=="GayathriChowdaryVadlamudi" && password=="514233241"){
     return res.json({
     status:1,
     response:{
@@ -67,5 +73,5 @@ app.use(express.json());
     }
 
     });
-    app.listen(port,0.0.0.0,()=>{
+    app.listen(port,"0.0.0.0",()=>{
     console.log(`Server is running at ${port}`)})
